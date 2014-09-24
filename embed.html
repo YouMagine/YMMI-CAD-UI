@@ -1,0 +1,23 @@
+<html>
+<head>
+<script src="acorn_interpreter.js"></script>
+<script type="text/javascript">
+function fetchCodeFromURL(url) {
+	//xhr request to fetch the code to run
+	//needs server-side gateway within same domain, that will download the code
+	return 'var a=1; for(var i=0;i<4;i++){a*=i;} a;';
+}
+function getParameters() {
+	url = 'https://www.youmagine.com/documents/9016/download';
+	dangerousCode = fetchCodeFromURL(url);
+	var myInterpreter = new Interpreter(dangerousCode);
+	myInterpreter.run();
+    console.log(myInterpreter.value);
+    output = document.getElementById('output');
+    output.innerHTML = myInterpreter.value;
+}
+
+</script>
+<textfield id="output"></textfield>
+</head>
+</html>
